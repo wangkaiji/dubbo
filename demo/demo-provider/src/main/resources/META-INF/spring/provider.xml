@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+    <bean id="demoService" class="com.jek.demo.provider.DemoServiceImp" />
+    <dubbo:service interface="com.jek.demo.DemoService" ref="demoService" />
+    <!-- 创建服务-->
+
+    <dubbo:application name="demo-provider" /> <!-- 提供应用信息，计算依赖信息 -->
+    <dubbo:registry address="redis://127.0.0.1:6379" />
+    <!-- 广播协议暴露服务注册地址 -->
+    <dubbo:protocol name="dubbo" port="20880" />
+</beans>
